@@ -10,50 +10,53 @@ public class TouchInput : MonoBehaviour {
     private RaycastHit hit;
     private List<GameObject> touchList = new List<GameObject>();
     private GameObject[] touchesOld;
-	
-	// Update is called once per frame
-	void Update () {
 
-
-
+    // Update is called once per frame
+    void Update() {
 #if UNITY_EDITOR
+        MouseControls();
+#endif
+        TouchControls();
+
+    }
+    void MouseControls()
+    {
+
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
         {
             touchesOld = new GameObject[touchList.Count];
             touchList.CopyTo(touchesOld);
             touchList.Clear();
+            
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
-            foreach (Touch touch in Input.touches)
+            if (Physics.Raycast(ray, out hit, touchInputMask))
             {
-                Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
+                GameObject recipient = hit.transform.gameObject;
+                touchList.Add(recipient);
 
-                if (Physics.Raycast(ray, out hit, touchInputMask))
+                if (Input.GetMouseButtonDown(0))
                 {
+                
+                    recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 
-                    GameObject recipient = hit.transform.gameObject;
-                    touchList.Add(recipient);
-
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-
-                    }
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        recipient.SendMessage("OnTouchUp", hit.point, SendMessageOptions.DontRequireReceiver);
-
-                    }
-                    if (Input.GetMouseButton(0))
-                    {
-                        recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
-
-                    }
                 }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    recipient.SendMessage("OnTouchUp", hit.point, SendMessageOptions.DontRequireReceiver);
 
+                }
+                if (Input.GetMouseButton(0))
+                {
+                    recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
 
+                }
             }
-            foreach (GameObject g in touchesOld)
+
+
+
+           foreach (GameObject g in touchesOld)
             {
                 if (!touchList.Contains(g))
                 {
@@ -63,7 +66,11 @@ public class TouchInput : MonoBehaviour {
 
             }
         }
-#endif
+    }
+
+    void TouchControls()
+    {
+
         if (Input.touchCount > 0)
         {
             touchesOld = new GameObject[touchList.Count];
@@ -116,5 +123,6 @@ public class TouchInput : MonoBehaviour {
             }
         }
 
-	}
+    }
+	
 }
