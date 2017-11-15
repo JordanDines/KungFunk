@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1842551482379316}
+  m_RootGameObject: {fileID: 1006524441541192}
   m_IsPrefabParent: 1
---- !u!1 &1842551482379316
+--- !u!1 &1006524441541192
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4762788250175608}
-  - component: {fileID: 33434171335301910}
-  - component: {fileID: 135708328533592348}
-  - component: {fileID: 23781976489270184}
-  - component: {fileID: 114066137769269428}
-  m_Layer: 8
-  m_Name: Enemy
-  m_TagString: Enemy
+  - component: {fileID: 4470727971498706}
+  - component: {fileID: 33335617785063256}
+  - component: {fileID: 65036470281971700}
+  - component: {fileID: 23640794581969236}
+  - component: {fileID: 114314846246683344}
+  m_Layer: 2
+  m_Name: Cube
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4762788250175608
+--- !u!4 &4470727971498706
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842551482379316}
+  m_GameObject: {fileID: 1006524441541192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 2.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23781976489270184
+--- !u!23 &23640794581969236
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842551482379316}
+  m_GameObject: {fileID: 1006524441541192}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e67b171ac567dcc40ae9ad5134de7fd6, type: 2}
+  - {fileID: 2100000, guid: f53628f43697d744286f209f12af444f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,37 +75,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33434171335301910
+--- !u!33 &33335617785063256
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842551482379316}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114066137769269428
-MonoBehaviour:
+  m_GameObject: {fileID: 1006524441541192}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65036470281971700
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842551482379316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a32c8f7cd23f2e44bee1e7ba3ce4458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialColour: {r: 0.8088235, g: 0, b: 0.2175458, a: 0}
-  selectedColour: {r: 0.054984864, g: 0.1245479, b: 0.8308824, a: 0}
-  speed: 0.2
-  player: {fileID: 0}
---- !u!135 &135708328533592348
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842551482379316}
+  m_GameObject: {fileID: 1006524441541192}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114314846246683344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006524441541192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4f215c7231bf84bb0beea702fc7519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldPosition: {x: 0, y: 0}
+  newPosition: {x: 0, y: 0}
+  angle: 0

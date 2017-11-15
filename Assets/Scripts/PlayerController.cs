@@ -4,29 +4,75 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public Color initialColour;
-    public Color selectedColour;
-    private Material mat;
+    public Vector2 oldPosition;
+    public Vector2 movingPosition;
+    public Vector2 newPosition;
+    public float angle;
+
+
+    private Camera cam;
 
     void Start ()
     {
-        mat = GetComponent<Renderer>().material;
+        cam = FindObjectOfType<Camera>();
+        angle = 0;
     }
 
+    void Update()
+    {
+        GetSwipeDirection();
+    }
     void OnTouchDown ()
     {
-        mat.color = selectedColour;
+       
     }
     void OnTouchUp()
     {
-        mat.color = initialColour;
+       
     }
     void OnTouchStay()
     {
-        mat.color = selectedColour;
+       
     }
     void OnTouchExit()
     {
-        mat.color = initialColour;
+        
+    }
+
+
+    void GetSwipeDirection()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            oldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        //When pressing down, get the first position
+        if (Input.GetMouseButton(0))
+        {
+            movingPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        //When letting go, get the final position
+        if (Input.GetMouseButtonUp(0))
+        {
+            newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            
+            
+        }
+        //Get the angle between the two position
+        angle = Vector2.Angle(oldPosition, newPosition);
+
+
+
+        //If the angle goes beyond 180, make the angle minus from 360
+        Vector3 cross = Vector3.Cross(newPosition, oldPosition);
+        if (cross.z < 0)
+        {
+            angle = 360 - angle;
+        }
+
+
+        Debug.DrawLine(oldPosition, movingPosition);
+
+
     }
 }

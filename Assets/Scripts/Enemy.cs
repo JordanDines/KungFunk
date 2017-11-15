@@ -7,31 +7,33 @@ public class Enemy : MonoBehaviour {
     public Color initialColour;
     public Color selectedColour;
     public float speed;
-    private Material mat;
+    private Material material;
 
     public GameObject player;
 
     void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        material = GetComponent<Renderer>().material;
+        material.color = initialColour;
+
     }
 
     void OnTouchDown()
     {
-        mat.color = selectedColour;
+        material.color = selectedColour;
         
     }
     void OnTouchUp()
     {
-        mat.color = initialColour;
+        material.color = initialColour;
     }
     void OnTouchStay()
     {
-        mat.color = selectedColour;
+        material.color = selectedColour;
         player.transform.position = Vector3.Lerp(player.transform.position, transform.position, speed);
     }
     void OnTouchExit()
     {
-        mat.color = initialColour;
+        material.color = initialColour;
     }
 }
