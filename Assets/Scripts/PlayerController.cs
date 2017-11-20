@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour {
         angle = Vector2.Angle(oldPosition, newPosition);
 
         //Loop through each enemy, check the angle between their position and your position
-        //against swipe angle. return the one that is closest to that angle
-        
+        //against swipe angle. return the ones that that are within a threshold using MathfDeltaAngle(eulerAngle1, eulerAngle2)
+
         //if two are on the same angle, get the closest one using vector3.distance
 
         //If the angle goes beyond 180, make the angle minus from 360
