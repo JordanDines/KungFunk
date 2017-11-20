@@ -61,7 +61,10 @@ public class PlayerController : MonoBehaviour {
         //Get the angle between the two position
         angle = Vector2.Angle(oldPosition, newPosition);
 
-
+        //Loop through each enemy, check the angle between their position and your position
+        //against swipe angle. return the one that is closest to that angle
+        
+        //if two are on the same angle, get the closest one using vector3.distance
 
         //If the angle goes beyond 180, make the angle minus from 360
         Vector3 cross = Vector3.Cross(newPosition, oldPosition);

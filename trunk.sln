@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trunk", "trunk.csproj", "{9886FD9B-04CF-ACFF-454C-462468CD4848}"
 EndProject
 Global
